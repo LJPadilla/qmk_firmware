@@ -35,3 +35,7 @@ RGB_MATRIX_ENABLE = yes
 RGB_MATRIX_DRIVER = custom
 
 LAYOUTS = 65_ansi_blocker
+
+# Something has to be added here for custom RGB effects
+# by setting RGB_MATRIX_CUSTOM_USER in rules.mk, new effects can be defined
+# directly from userspace
