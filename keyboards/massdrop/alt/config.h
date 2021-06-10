@@ -107,10 +107,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *  These options are also useful to firmware size reduction.
  */
 
-/* disable debug print */
-//#define NO_DEBUG
+/* disable debug print
+ * does not work */
+//#define NO_DEBUG 
 
-/* disable print */
+/* disable print 
+ * does not work*/
 //#define NO_PRINT
 
 /* disable action features */
@@ -123,5 +125,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGB_MATRIX_KEYPRESSES
 #define RGB_MATRIX_LED_PROCESS_LIMIT 15
 #define RGB_MATRIX_LED_FLUSH_LIMIT 10
+
+// disable unwanted effects NOT WORKING???
+#define DISABLE_RGB_MATRIX_RAINBOW_MOVING_CHEVRON
+#define DISABLE_RGB_MATRIX_RAINBOW_BEACON
+#define DISABLE_RGB_MATRIX_RAINBOW_PINWHEELS
+#define DISABLE_DIGITAL_RAIN
+#define DISABLE_JELLYBEAN_RAINDROPS
+#define DISABLE_RANDROPS
+
 
 #include "config_led.h"
