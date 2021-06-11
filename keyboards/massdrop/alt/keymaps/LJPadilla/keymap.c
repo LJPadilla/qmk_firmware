@@ -23,7 +23,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             ),
     [2] = LAYOUT_65_ansi_blocker(
             KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  MD_BOOT, RGB_TOG,\
-            RGB_MOD, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PERC, \
+            _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PERC, \
             _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, KC_EXLM, \
             OSM(MOD_LSFT), _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,    KC_CAPS, KC_PGUP, KC_AT, \
             OSM(MOD_LCTL), OSM(MOD_LALT), OSM(MOD_LGUI),                KC_PAUSE,               _______, OSM(MOD_RALT), KC_HOME, KC_PGDN, KC_END  \
@@ -88,3 +88,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
+layer_state_t layer_state_set_user(layer_state_t state){
+    rgb_matrix_set_color_all(0,0,0);
+    uint8_t layer = get_highest_layer(state);
+    switch(layer){
+        case 0:
+            rgb_matrix_mode(RGB_MATRIX_CUSTOM_sunset);
+            break;
+        case 1:
+            rgb_matrix_mode(RGB_MATRIX_CUSTOM_sunset_gaming);
+            break;
+        case 2:
+            rgb_matrix_mode(RGB_MATRIX_CUSTOM_sunset_function);
+            break; 
+    }
+    return state;
+}
