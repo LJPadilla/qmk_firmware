@@ -11,7 +11,12 @@ bool sunset_gaming(effect_params_t* params) {
         if (HAS_FLAGS(g_led_config.flags[i], LED_FLAG_MODIFIER)) {
             rgb_matrix_set_color(i, 255, 40, 0);
         } else {
-            rgb_matrix_set_color(i, 0, 0, 0);
+            if (i==17||i==31||i==32||i==33){
+            rgb_matrix_set_color(i,255,40,0);
+            }
+            else{
+            rgb_matrix_set_color(i, 0, 0, 255);
+            }
         }
     }
     return led_max < DRIVER_LED_TOTAL;
