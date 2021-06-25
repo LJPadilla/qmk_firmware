@@ -12,21 +12,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_TAB,           KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS, KC_AMPR, \
             OSL(2),           KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          KC_ENT,  KC_CIRC, \
             OSM(MOD_LSFT),    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, OSM(MOD_RSFT),    KC_UP,   KC_ASTR, \
-            OSM(MOD_LCTL),    OSM(MOD_LALT),    OSM(MOD_LGUI),     KC_SPC,                             TG(1),  OSM(MOD_RALT),    KC_LEFT, KC_DOWN, KC_RGHT  \
+            OSM(MOD_LCTL),    OSM(MOD_LALT),    OSM(MOD_LGUI),     KC_SPC,                             TG(1),  OSM(MOD_RALT),    KC_LEFT, KC_DOWN, KC_RGHT \
             ),
     [1] = LAYOUT_65_ansi_blocker(
-            KC_ESC,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,\
-            _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PERC, \
-            _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, KC_EXLM, \
-            KC_LSFT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_RSFT,          KC_UP,   KC_AT, \
-            KC_LCTL, KC_LALT, KC_LGUI,                            KC_SPC,                             _______, KC_RALT, KC_LEFT, KC_DOWN, KC_RGHT  \
+            KC_ESC,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+            _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+            _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, \
+            KC_LSFT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_RSFT,          _______, _______, \
+            KC_LCTL, KC_LALT, KC_LGUI,                            KC_SPC,                             _______, KC_RALT, _______, _______, _______ \
             ),
     [2] = LAYOUT_65_ansi_blocker(
             KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  MD_BOOT, RGB_TOG,\
             _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PERC, \
             _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, KC_EXLM, \
-            OSM(MOD_LSFT), _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,    KC_CAPS, KC_PGUP, KC_AT, \
-            OSM(MOD_LCTL), OSM(MOD_LALT), OSM(MOD_LGUI),                KC_PAUSE,               _______, OSM(MOD_RALT), KC_HOME, KC_PGDN, KC_END  \
+            OSM(MOD_LSFT),    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_CAPS, KC_PGUP, KC_AT, \
+            OSM(MOD_LCTL), OSM(MOD_LALT), OSM(MOD_LGUI),                KC_PAUSE,            _______, OSM(MOD_RALT),    KC_HOME, KC_PGDN, KC_END \
             ),
 };
 
@@ -59,7 +59,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case RGB_TOG:
             if (record->event.pressed) {
-                switch (rgb_matrix_get_flags()) {
+                switch (rgb_matrix_get_flags()) {  
                     case LED_FLAG_ALL: {
                                            rgb_matrix_set_flags(LED_FLAG_KEYLIGHT | LED_FLAG_MODIFIER | LED_FLAG_INDICATOR);
                                            rgb_matrix_set_color_all(0, 0, 0);
