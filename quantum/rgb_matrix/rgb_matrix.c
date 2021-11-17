@@ -92,8 +92,6 @@ __attribute__((weak)) RGB rgb_matrix_hsv_to_rgb(HSV hsv) { return hsv_to_rgb(hsv
 #endif
 
 #if !defined(RGB_MATRIX_STARTUP_MODE)
-#    ifndef DISABLE_RGB_MATRIX_ALPHAS_MODS
-#        define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_ALPHAS_MODS
 #    ifdef ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
 #        define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_CYCLE_LEFT_RIGHT
 #    else
@@ -221,11 +219,11 @@ void process_rgb_matrix(uint8_t row, uint8_t col, bool pressed) {
 #    if defined(RGB_MATRIX_KEYRELEASES)
     if (!pressed)
 #    elif defined(RGB_MATRIX_KEYPRESSES)
-    if (pressed)
+        if (pressed)
 #    endif  // defined(RGB_MATRIX_KEYRELEASES)
-    {
-        led_count = rgb_matrix_map_row_column_to_led(row, col, led);
-    }
+        {
+            led_count = rgb_matrix_map_row_column_to_led(row, col, led);
+        }
 
     if (last_hit_buffer.count + led_count > LED_HITS_TO_REMEMBER) {
         memcpy(&last_hit_buffer.x[0], &last_hit_buffer.x[led_count], LED_HITS_TO_REMEMBER - led_count);
@@ -258,21 +256,21 @@ void rgb_matrix_test(void) {
     uint8_t factor = 10;
     switch ((g_rgb_timer & (0b11 << factor)) >> factor) {
         case 0: {
-            rgb_matrix_set_color_all(20, 0, 0);
-            break;
-        }
+                    rgb_matrix_set_color_all(20, 0, 0);
+                    break;
+                }
         case 1: {
-            rgb_matrix_set_color_all(0, 20, 0);
-            break;
-        }
+                    rgb_matrix_set_color_all(0, 20, 0);
+                    break;
+                }
         case 2: {
-            rgb_matrix_set_color_all(0, 0, 20);
-            break;
-        }
+                    rgb_matrix_set_color_all(0, 0, 20);
+                    break;
+                }
         case 3: {
-            rgb_matrix_set_color_all(20, 20, 20);
-            break;
-        }
+                    rgb_matrix_set_color_all(20, 20, 20);
+                    break;
+                }
     }
 }
 
@@ -351,19 +349,19 @@ static void rgb_task_render(uint8_t effect) {
             rendering = rgb_matrix_none(&rgb_effect_params);
             break;
 
-// ---------------------------------------------
-// -----Begin rgb effect switch case macros-----
+            // ---------------------------------------------
+            // -----Begin rgb effect switch case macros-----
 #define RGB_MATRIX_EFFECT(name, ...)          \
-    case RGB_MATRIX_##name:                   \
-        rendering = name(&rgb_effect_params); \
-        break;
+        case RGB_MATRIX_##name:                   \
+                                                  rendering = name(&rgb_effect_params); \
+            break;
 #include "rgb_matrix_effects.inc"
 #undef RGB_MATRIX_EFFECT
 
 #if defined(RGB_MATRIX_CUSTOM_KB) || defined(RGB_MATRIX_CUSTOM_USER)
 #    define RGB_MATRIX_EFFECT(name, ...)          \
         case RGB_MATRIX_CUSTOM_##name:            \
-            rendering = name(&rgb_effect_params); \
+                                                  rendering = name(&rgb_effect_params); \
             break;
 #    ifdef RGB_MATRIX_CUSTOM_KB
 #        include "rgb_matrix_kb.inc"
@@ -376,12 +374,12 @@ static void rgb_task_render(uint8_t effect) {
             // -----End rgb effect switch case macros-------
             // ---------------------------------------------
 
-        // Factory default magic value
+            // Factory default magic value
         case UINT8_MAX: {
-            rgb_matrix_test();
-            rgb_task_state = FLUSHING;
-        }
-            return;
+                            rgb_matrix_test();
+                            rgb_task_state = FLUSHING;
+                        }
+                        return;
     }
 
     rgb_effect_params.iter++;
@@ -415,9 +413,9 @@ void rgb_matrix_task(void) {
     // while suspended and just do a software shutdown. This is a cheap hack for now.
     bool suspend_backlight = suspend_state ||
 #if RGB_DISABLE_TIMEOUT > 0
-                             (rgb_anykey_timer > (uint32_t)RGB_DISABLE_TIMEOUT) ||
+        (rgb_anykey_timer > (uint32_t)RGB_DISABLE_TIMEOUT) ||
 #endif  // RGB_DISABLE_TIMEOUT > 0
-                             false;
+        false;
 
     uint8_t effect = suspend_backlight || !rgb_matrix_config.enable ? 0 : rgb_matrix_config.mode;
 
