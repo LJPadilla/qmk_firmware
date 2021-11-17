@@ -19,7 +19,7 @@ RGB_MATRIX_EFFECT(sunset_function)
                     rgb_matrix_set_color(i,255,70,0);
                 }
             } else {
-                if(i==0||i==29||i==43||i==56||i==57||i==64||i==65||i==66){
+                if(i==0||i==14||i==29||i==43||i==56||i==57||i==61||i==64||i==65||i==66){
                     rgb_matrix_set_color(i,255,0,0);
                 }
                 else{

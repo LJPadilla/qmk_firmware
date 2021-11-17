@@ -26,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PERC, \
             _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, KC_EXLM, \
             OSM(MOD_LSFT),    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_CAPS, KC_PGUP, KC_AT, \
-            OSM(MOD_LCTL), OSM(MOD_LALT), OSM(MOD_LGUI),                KC_MPLY,            _______, OSM(MOD_RALT),    KC_HOME, KC_PGDN, KC_END \
+            OSM(MOD_LCTL), OSM(MOD_LALT), OSM(MOD_LGUI),                 KC_MPLY,            _______, OSM(MOD_RALT),    KC_HOME, KC_PGDN, KC_END \
             ),
 };
 
@@ -61,20 +61,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 switch (rgb_matrix_get_flags()) {  
                     case LED_FLAG_ALL: {
-                                           rgb_matrix_set_flags(LED_FLAG_KEYLIGHT | LED_FLAG_MODIFIER | LED_FLAG_INDICATOR);
-                                           rgb_matrix_set_color_all(0, 0, 0);
+                                           rgb_matrix_set_flags(LED_FLAG_NONE);
+                                           rgb_matrix_disable_noeeprom();
                                        }
                                        break;
-                    case (LED_FLAG_KEYLIGHT | LED_FLAG_MODIFIER | LED_FLAG_INDICATOR): {
-                                                                                           rgb_matrix_set_flags(LED_FLAG_UNDERGLOW);
-                                                                                           rgb_matrix_set_color_all(0, 0, 0);
-                                                                                       }
-                                                                                       break;
-                    case LED_FLAG_UNDERGLOW: {
-                                                 rgb_matrix_set_flags(LED_FLAG_NONE);
-                                                 rgb_matrix_disable_noeeprom();
-                                             }
-                                             break;
                     default: {
                                  rgb_matrix_set_flags(LED_FLAG_ALL);
                                  rgb_matrix_enable_noeeprom();
