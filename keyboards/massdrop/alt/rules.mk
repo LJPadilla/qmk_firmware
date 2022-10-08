@@ -33,3 +33,4 @@ LAYOUTS = 65_ansi_blocker
 # Something has to be added here for custom RGB effects
 # by setting RGB_MATRIX_CUSTOM_USER in rules.mk, new effects can be defined
 # directly from userspace
+RGB_MATRIX_CUSTOM_USER = yes
